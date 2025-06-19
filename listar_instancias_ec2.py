@@ -98,8 +98,7 @@ def listar_instancias_ec2(ec2_client, console):
 
         ami_map = {}
         if ami_ids:
-            console.print(f" konsultando detalhes de [bold]{len(ami_ids)}[/bold] AMIs...")
-            image_details = ec2_client.describe_images(ImageIds=list(ami_ids))
+             image_details = ec2_client.describe_images(ImageIds=list(ami_ids))
             for image in image_details.get('Images', []):
                 ami_map[image['ImageId']] = image.get('Name', 'N/A')
         
@@ -190,9 +189,9 @@ if __name__ == "__main__":
     console = Console()
     
     load_dotenv()
-    aws_key_id = os.getenv('AWS_ACCESS_KEY_ID')
-    aws_secret_key = os.getenv('AWS_SECRET_ACCESS_KEY')
-    aws_session_token = os.getenv('AWS_SESSION_TOKEN')
+    aws_key_id = os.getenv('aws_access_key_id')
+    aws_secret_key = os.getenv('aws_secret_access_key')
+    aws_session_token = os.getenv('aws_session_token', None)
     aws_region = os.getenv('AWS_REGION')
 
     if not all([aws_key_id, aws_secret_key, aws_region]):
