@@ -98,7 +98,7 @@ def listar_instancias_ec2(ec2_client, console):
 
         ami_map = {}
         if ami_ids:
-             image_details = ec2_client.describe_images(ImageIds=list(ami_ids))
+            image_details = ec2_client.describe_images(ImageIds=list(ami_ids))
             for image in image_details.get('Images', []):
                 ami_map[image['ImageId']] = image.get('Name', 'N/A')
         
